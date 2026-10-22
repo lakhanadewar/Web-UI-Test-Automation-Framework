@@ -12,4 +12,10 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    server: {
+      // Lets the Selenium Grid browsers in Docker open the app (see KNOWN_ISSUES.md, KI-003)
+      allowedHosts: ["host.docker.internal"],
+    },
+  },
 });

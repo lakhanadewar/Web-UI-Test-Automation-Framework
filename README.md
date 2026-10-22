@@ -47,7 +47,8 @@ It covers sign-up, login, session handling, catalogue, cart, coupons, checkout, 
 ├── docker-compose.yml             Selenium Grid: hub + Chrome + Firefox + Edge
 ├── Jenkinsfile
 ├── TEST_PLAN.md
-└── TEST_SCENARIOS.md
+├── TEST_SCENARIOS.md
+└── KNOWN_ISSUES.md                setup problems and the fixes that worked
 ```
 
 ## How it works
@@ -84,7 +85,7 @@ All settings live in `src/main/resources/config.properties`. You can override an
 
 ```
 docker compose up -d                       # start hub + Chrome, Firefox, Edge nodes
-# Grid console: http://localhost:4444
+# Grid console: http://localhost:5444
 
 mvn clean test -Dsuite=testng-full.xml -DrunMode=grid -DbaseUrl=http://host.docker.internal:8080
 
@@ -92,6 +93,8 @@ docker compose down
 ```
 
 The browsers run inside Docker, so they reach the app on your machine through `host.docker.internal`. If the app is only reachable on `localhost`, start it with its host set to `0.0.0.0`.
+
+The Grid runs on port **5444** rather than the usual 4444, because Windows often reserves the 4444 range. If the Grid won't start, see [KNOWN_ISSUES.md](KNOWN_ISSUES.md).
 
 ### Suites
 

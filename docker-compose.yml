@@ -1,7 +1,7 @@
 # Selenium Grid with Chrome, Firefox and Edge nodes.
 #
 #   Start : docker compose up -d
-#   View  : http://localhost:4444  (Grid console, shows the sessions running)
+#   View  : http://localhost:5444  (Grid console, shows the sessions running)
 #   Stop  : docker compose down
 #
 # The browsers run inside Docker, so they reach the TestKart app on your machine through
@@ -13,9 +13,7 @@ services:
     image: selenium/hub:4.35.0-20250828
     container_name: selenium-hub
     ports:
-      - "4442:4442"
-      - "4443:4443"
-      - "4444:4444"
+      - "5444:4444"
 
   chrome:
     image: selenium/node-chrome:4.35.0-20250828
