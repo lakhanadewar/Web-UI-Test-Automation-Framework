@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.testkart</groupId>
+	<artifactId>testkart-selenium-framework</artifactId>
+	<version>1.0.0</version>
+
+	<name>TestKart Selenium Framework</name>
+	<description>Selenium + TestNG Page Object Model framework for the TestKart e-commerce app</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.release>11</maven.compiler.release>
+
+		<selenium.version>4.35.0</selenium.version>
+		<testng.version>7.11.0</testng.version>
+		<poi.version>5.4.1</poi.version>
+		<extentreports.version>5.1.2</extentreports.version>
+
+		<!-- Default suite. Change it from the command line: mvn test -Dsuite=testng-regression.xml -->
+		<suite>testng-smoke.xml</suite>
+		<maven.test.failure.ignore>false</maven.test.failure.ignore>
+	</properties>
+
+	<dependencies>
+		<!-- Selenium WebDriver. Selenium Manager (built in) downloads the right driver, so WebDriverManager is no longer needed -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+
+		<!-- TestNG -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Apache POI to read test data from Excel -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+
+		<!-- Extent Reports for the HTML report -->
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>${extentreports.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.14.0</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.3</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>suites/${suite}</suiteXmlFile>
+					</suiteXmlFiles>
+					<!-- All tests always run. Set -Dmaven.test.failure.ignore=true to stop failures failing the build -->
+					<testFailureIgnore>${maven.test.failure.ignore}</testFailureIgnore>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

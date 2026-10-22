@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!--
+	SMOKE: the critical happy paths, run on every build.
+	Runs test classes in parallel (3 browsers at a time).
+	Browser comes from -Dbrowser or config.properties.
+
+	mvn test -Dsuite=testng-smoke.xml
+	mvn test -Dsuite=testng-smoke.xml -Dbrowser=firefox
+-->
+<suite name="TestKart Smoke" parallel="classes" thread-count="3">
+
+	<test name="Smoke Tests">
+		<groups>
+			<run>
+				<include name="smoke" />
+			</run>
+		</groups>
+		<packages>
+			<package name="tests" />
+		</packages>
+	</test>
+
+</suite>

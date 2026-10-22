@@ -1,0 +1,25 @@
+# Build output
+target/
+bin/
+*.class
+
+# Test output (reports are regenerated on every run)
+reports/
+test-output/
+*.log
+
+# IDE files
+.project
+.classpath
+.settings/
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local secrets, never commit these
+.env
+*.local.properties

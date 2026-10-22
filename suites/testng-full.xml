@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!--
+	FULL CYCLE: every test on Chrome, Firefox and Edge at the same time (cross-browser).
+	Each <test> block passes its own "browser" parameter to BaseTest.
+	Best run on Selenium Grid (Docker), see README:
+
+	docker compose up -d
+	mvn test -Dsuite=testng-full.xml -DrunMode=grid -DbaseUrl=http://host.docker.internal:8080
+-->
+<suite name="TestKart Full Cycle" parallel="tests" thread-count="3">
+
+	<test name="Chrome">
+		<parameter name="browser" value="chrome" />
+		<packages>
+			<package name="tests" />
+		</packages>
+	</test>
+
+	<test name="Firefox">
+		<parameter name="browser" value="firefox" />
+		<packages>
+			<package name="tests" />
+		</packages>
+	</test>
+
+	<test name="Edge">
+		<parameter name="browser" value="edge" />
+		<packages>
+			<package name="tests" />
+		</packages>
+	</test>
+
+</suite>
